@@ -118,7 +118,7 @@ public class WarenAusgang {
 		JSpinner spinner = new JSpinner();
 		spinner.setBounds(27, 130, 71, 26);
 		panel.add(spinner);
-		
+		//hsdhshgd
 		
 	
 		
