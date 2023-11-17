@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class WarenEingang {
+public class Login {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class WarenEingang {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WarenEingang window = new WarenEingang();
+					Login window = new Login();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class WarenEingang {
 	/**
 	 * Create the application.
 	 */
-	public WarenEingang() {
+	public Login() {
 		initialize();
 	}
 
@@ -36,7 +36,7 @@ public class WarenEingang {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 500);
+		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
