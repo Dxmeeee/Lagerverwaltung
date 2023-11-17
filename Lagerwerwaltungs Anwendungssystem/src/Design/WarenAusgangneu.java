@@ -26,7 +26,7 @@ import java.sql.*;
 
 import javax.swing.DefaultComboBoxModel;
 
-public class WarenAusgang {
+public class WarenAusgangneu {
 
 	private JFrame frame;
 	
@@ -45,7 +45,7 @@ public class WarenAusgang {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WarenAusgang window = new WarenAusgang();
+					WarenAusgangneu window = new WarenAusgangneu();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +57,7 @@ public class WarenAusgang {
 	/**
 	 * Create the application.
 	 */
-	public WarenAusgang() {
+	public WarenAusgangneu() {
 		initialize();
 	}
 
@@ -114,10 +114,6 @@ public class WarenAusgang {
 		});
 		btnZurcksetzen.setBounds(158, 243, 117, 29);
 		panel.add(btnZurcksetzen);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(27, 130, 71, 26);
-		panel.add(spinner);
 		
 		
 	
@@ -196,14 +192,16 @@ public class WarenAusgang {
 		btnZurcksetzen_1_1.setBounds(158, 256, 117, 29);
 		panel_2.add(btnZurcksetzen_1_1);
 		
+	
+	
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Festplattenspeicher", null, panel_3, null);
 		panel_3.setLayout(null);
+        JComboBox<String> comboBox3 = new JComboBox<>();
+        comboBox3.setBounds(27, 41, 189, 27);
+        panel.add(comboBox3);
+        fillComboBoxFromDatabase(comboBox3);
 		
-		JComboBox<Object> comboBox_1_1_1 = new JComboBox<Object>(new Object[]{});
-		comboBox_1_1_1.setModel(new DefaultComboBoxModel(new String[] {"Modell", "500 GB ", "1 TB ", "2 TB"}));
-		comboBox_1_1_1.setBounds(27, 41, 189, 27);
-		panel_3.add(comboBox_1_1_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setText("Bitte wählen Sie hier das Modell aus.");
@@ -226,7 +224,7 @@ public class WarenAusgang {
 		JButton btnZurcksetzen_1_1_1 = new JButton("Zurücksetzen");
 		btnZurcksetzen_1_1_1.addActionListener(new ActionListener() {
 				 public void actionPerformed(ActionEvent e) {
-				        comboBox_1_1_1.setSelectedIndex(0);
+				        comboBox3.setSelectedIndex(0);
 				    }
 			
 		});
@@ -314,4 +312,5 @@ public class WarenAusgang {
 	        }
 	    }
 	}
+
 
