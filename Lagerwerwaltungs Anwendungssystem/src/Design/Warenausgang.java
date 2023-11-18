@@ -1,7 +1,6 @@
 package Design;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -23,7 +22,6 @@ import java.sql.PreparedStatement;
 import java.awt.EventQueue;
 import javax.swing.*;
 import java.sql.*;
-
 import javax.swing.DefaultComboBoxModel;
 
 public class Warenausgang extends JFrame {

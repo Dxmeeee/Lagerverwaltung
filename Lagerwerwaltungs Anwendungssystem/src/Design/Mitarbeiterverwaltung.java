@@ -42,6 +42,9 @@ public class Mitarbeiterverwaltung extends JFrame {
 	public Mitarbeiterverwaltung() {
 		initialize();
 	}
+	public void setVisible(boolean visible) {
+	        super.setVisible(visible);
+	    }
 
 	/**
 	 * Initialize the contents of the frame.

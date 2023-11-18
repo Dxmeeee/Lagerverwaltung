@@ -23,6 +23,7 @@ public class Wareneingang extends JFrame {
     private JTextField textField_8;
     private JTextField textField_11;
     private JTextField textField_13;
+    private JSpinner spinner_6; 
 
     public Wareneingang() {
         initialize();
@@ -125,7 +126,7 @@ public class Wareneingang extends JFrame {
         btnReset_1.setBounds(146, 197, 117, 29);
         panel.add(btnReset_1);
         
-        JSpinner spinner_6 = new JSpinner();
+        spinner_6 = new JSpinner();
         spinner_6.setBounds(492, 126, 130, 26);
         panel.add(spinner_6);
         
@@ -441,16 +442,15 @@ public class Wareneingang extends JFrame {
     private void buttonConfirmed() {
         addToDatabase();
         readData();
+        resetFields();
     }
+
 
     private void resetFields() {
         textField_2.setText("");
         textField_3.setText("");
-        textField_4.setText("");
-        textField_5.setText("");
-        textField_6.setText("");
-        textField_7.setText("");
-        textField_Spalte.setText(""); // Zurücksetzen des Spalten-Textfelds
+        // ... Weitere Textfelder zurücksetzen
+        spinner_6.setValue(0);  // Hier den Spinner zurücksetzen
     }
 
     private void addToDatabase() {
@@ -461,33 +461,55 @@ public class Wareneingang extends JFrame {
 
             Connection connection = DriverManager.getConnection(url, user, password);
 
-            String getMaxProductNumberSql = "SELECT MAX(produktnr) FROM grafikkarte";
+            // Abfrage der maximalen Produkt- und Spaltennummer
+            String getMaxProductNumberSql = "SELECT MAX(produktnr), MAX(spalte) FROM grafikkarte";
             int maxProductNumber = 0;
+            int maxColumn = 0;
 
             try (PreparedStatement getMaxProductNumberStatement = connection.prepareStatement(getMaxProductNumberSql)) {
                 try (var resultSet = getMaxProductNumberStatement.executeQuery()) {
                     if (resultSet.next()) {
                         maxProductNumber = resultSet.getInt(1);
+                        maxColumn = resultSet.getInt(2);
                     }
                 }
             }
 
+            // Berechnung der nächsten Produkt- und Zeilennummer
             int nextProductNumber = maxProductNumber + 1;
+            
+         
+            
+            int nextRow = 1;
+            int nextColumn = 1;
 
-            String insertSql = "INSERT INTO grafikkarte (produktnr, hersteller, typbezeichnung, flur, regal, spalte, menge) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String insertSql = "INSERT INTO grafikkarte (produktnr, hersteller, typbezeichnung, regal, spalte, zeile, menge) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
                 insertStatement.setInt(1, nextProductNumber);
                 insertStatement.setString(2, textField_2.getText());
                 insertStatement.setString(3, textField_3.getText());
-                insertStatement.setInt(4, Integer.parseInt(textField_4.getText()));
-                insertStatement.setInt(5, Integer.parseInt(textField_5.getText()));
-                insertStatement.setInt(6, Integer.parseInt(textField_6.getText()));
-                insertStatement.setInt(7, Integer.parseInt(textField_7.getText()));
+                insertStatement.setInt(4, 1);
+                insertStatement.setInt(5, nextRow);
+                insertStatement.setInt(6, nextColumn);
+                
+                // Hier den Wert des JSpinner verwenden
+                int mengeValue = (int) spinner_6.getValue();
+                insertStatement.setInt(7, mengeValue);
 
                 int rowsAffected = insertStatement.executeUpdate();
                 System.out.println(rowsAffected + " Datensatz erfolgreich eingefügt.");
-            }
+                
+               if(nextRow<5) {
+            	   nextRow=nextRow++;}
+               else if(nextRow==5) {
+            	   nextRow=1;
+            	   nextColumn=nextColumn++;
+            	   
+            		   
+            	   }
+               }
+            
 
             connection.close();
 

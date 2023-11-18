@@ -15,7 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.Window;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -24,15 +23,12 @@ public class Homepage extends JFrame {
     private JFrame frame;
     private JTextField txtSuche;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     Homepage window = new Homepage();
-                    window.frame.setVisible(true);
+                    window.setVisible(true);  // Änderung: Verwende setVisible anstelle von frame.setVisible
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -40,25 +36,18 @@ public class Homepage extends JFrame {
         });
     }
 
-    /**
-     * Create the application.
-     */
     public Homepage() {
         initialize();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
     private void initialize() {
-        frame = new JFrame();
-        frame.setBounds(100, 100, 700, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 700, 500);
+        getContentPane().setLayout(null);
 
         JPanel panelOben = new JPanel();
         panelOben.setBounds(0, 0, 700, 35);
-        frame.getContentPane().add(panelOben);
+        getContentPane().add(panelOben);
 
         JTextPane txtpnSmartLogapplication = new JTextPane();
         txtpnSmartLogapplication.setEditable(false);
@@ -69,12 +58,11 @@ public class Homepage extends JFrame {
 
         JPanel panelRechts = new JPanel();
         panelRechts.setBounds(507, 35, 193, 436);
-        frame.getContentPane().add(panelRechts);
+        getContentPane().add(panelRechts);
 
         JButton btnWareneingang = new JButton("Wareneingang");
         btnWareneingang.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Hier öffnest du die Klasse Wareneingang
                 Wareneingang wareneingang = new Wareneingang();
                 wareneingang.setVisible(true);
             }
@@ -87,7 +75,6 @@ public class Homepage extends JFrame {
         JButton btnWarenausgang = new JButton("Warenausgang");
         btnWarenausgang.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Hier öffnest du die Klasse Warenausgang
                 Warenausgang warenausgang = new Warenausgang();
                 warenausgang.setVisible(true);
             }
@@ -95,58 +82,59 @@ public class Homepage extends JFrame {
 
         JButton btnInventur = new JButton("Inventur");
      
-
         JButton btnLagerverwaltung = new JButton("Lagerverwaltung");
 
         JButton btnMitarbeiterverwaltung = new JButton("Mitarbeiterverwaltung");
         btnMitarbeiterverwaltung.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                Mitarbeiterverwaltung mitarbeiterverwaltung = new Mitarbeiterverwaltung();
+                mitarbeiterverwaltung.setVisible(true);
             }
         });
         
         JButton btnNewButton = new JButton("Logout");
         btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
+            public void actionPerformed(ActionEvent e) {
+            }
         });
         GroupLayout gl_panelRechts = new GroupLayout(panelRechts);
         gl_panelRechts.setHorizontalGroup(
-        	gl_panelRechts.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelRechts.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(gl_panelRechts.createParallelGroup(Alignment.TRAILING, false)
-        				.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(btnWarenausgang, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(btnWareneingang, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(btnInventur, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(btnLagerverwaltung, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(btnMitarbeiterverwaltung, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(txtSuche, Alignment.LEADING))
-        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            gl_panelRechts.createParallelGroup(Alignment.LEADING)
+                .addGroup(gl_panelRechts.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(gl_panelRechts.createParallelGroup(Alignment.TRAILING, false)
+                        .addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnWarenausgang, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnWareneingang, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInventur, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLagerverwaltung, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMitarbeiterverwaltung, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSuche, Alignment.LEADING))
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gl_panelRechts.setVerticalGroup(
-        	gl_panelRechts.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelRechts.createSequentialGroup()
-        			.addComponent(txtSuche, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addGap(12)
-        			.addComponent(btnWareneingang)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(btnWarenausgang)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(btnInventur)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(btnLagerverwaltung)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(btnMitarbeiterverwaltung)
-        			.addPreferredGap(ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
-        			.addComponent(btnNewButton)
-        			.addContainerGap())
+            gl_panelRechts.createParallelGroup(Alignment.LEADING)
+                .addGroup(gl_panelRechts.createSequentialGroup()
+                    .addComponent(txtSuche, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(12)
+                    .addComponent(btnWareneingang)
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(btnWarenausgang)
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(btnInventur)
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(btnLagerverwaltung)
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(btnMitarbeiterverwaltung)
+                    .addPreferredGap(ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                    .addComponent(btnNewButton)
+                    .addContainerGap())
         );
         panelRechts.setLayout(gl_panelRechts);
         
         JPanel panelUnten = new JPanel();
         panelUnten.setBounds(0, 471, 700, 1);
-        frame.getContentPane().add(panelUnten);
+        getContentPane().add(panelUnten);
         panelUnten.setLayout(null);
         
         JLabel lblNewLabel = new JLabel("New label");
@@ -157,8 +145,10 @@ public class Homepage extends JFrame {
         lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
         lblNewLabel_1.setBounds(6, 431, 131, 35);
-        frame.getContentPane().add(lblNewLabel_1);
+        getContentPane().add(lblNewLabel_1);
     }
 
-	
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+    }
 }
