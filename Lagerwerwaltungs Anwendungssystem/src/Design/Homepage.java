@@ -1,7 +1,6 @@
 package Design;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -16,133 +15,150 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Window;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
-public class Homepage {
+public class Homepage extends JFrame {
 
-	private JFrame frame;
-	private JTextField txtSuche;
-	private JTextField txtSmartLog;
+    private JFrame frame;
+    private JTextField txtSuche;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Homepage window = new Homepage();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Homepage window = new Homepage();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Create the application.
-	 */
-	public Homepage() {
-		initialize();
-	}
+    /**
+     * Create the application.
+     */
+    public Homepage() {
+        initialize();
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		JPanel panelMitte = new JPanel();
-		frame.getContentPane().add(panelMitte, BorderLayout.CENTER);
-		
-		txtSmartLog = new JTextField();
-		txtSmartLog.setBackground(SystemColor.window);
-		txtSmartLog.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		txtSmartLog.setText("Smart Log.");
-		txtSmartLog.setColumns(10);
-		GroupLayout gl_panelMitte = new GroupLayout(panelMitte);
-		gl_panelMitte.setHorizontalGroup(
-			gl_panelMitte.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelMitte.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(txtSmartLog, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(121, Short.MAX_VALUE))
-		);
-		gl_panelMitte.setVerticalGroup(
-			gl_panelMitte.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panelMitte.createSequentialGroup()
-					.addContainerGap(214, Short.MAX_VALUE)
-					.addComponent(txtSmartLog, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		panelMitte.setLayout(gl_panelMitte);
-		
-		JPanel panelOben = new JPanel();
-		frame.getContentPane().add(panelOben, BorderLayout.NORTH);
-		
-		JTextPane txtpnSmartLogapplication = new JTextPane();
-		txtpnSmartLogapplication.setBackground(SystemColor.window);
-		txtpnSmartLogapplication.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		txtpnSmartLogapplication.setText("Smart Log.-Application");
-		panelOben.add(txtpnSmartLogapplication);
-		
-		JPanel panelRechts = new JPanel();
-		frame.getContentPane().add(panelRechts, BorderLayout.EAST);
-		
-		JButton btnNewButton = new JButton("Wareneingang");
-		
-		txtSuche = new JTextField();
-		txtSuche.setText("Suche");
-		txtSuche.setColumns(10);
-		
-		JButton btnNewButton_1 = new JButton("Warenausgang");
-		
-		JButton btnNewButton_2 = new JButton("Inventur");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JButton btnNewButton_3 = new JButton("Lagerverwaltung");
-		
-		JButton btnNewButton_4 = new JButton("Mitarbeiterverwaltung");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		GroupLayout gl_panelRechts = new GroupLayout(panelRechts);
-		gl_panelRechts.setHorizontalGroup(
-			gl_panelRechts.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelRechts.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panelRechts.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(txtSuche))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panelRechts.setVerticalGroup(
-			gl_panelRechts.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelRechts.createSequentialGroup()
-					.addComponent(txtSuche, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_1)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_2)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_3)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_4)
-					.addContainerGap(39, Short.MAX_VALUE))
-		);
-		panelRechts.setLayout(gl_panelRechts);
-	}
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 700, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        JPanel panelOben = new JPanel();
+        panelOben.setBounds(0, 0, 700, 35);
+        frame.getContentPane().add(panelOben);
+
+        JTextPane txtpnSmartLogapplication = new JTextPane();
+        txtpnSmartLogapplication.setEditable(false);
+        txtpnSmartLogapplication.setBackground(SystemColor.window);
+        txtpnSmartLogapplication.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+        txtpnSmartLogapplication.setText("Smart Log.-Application");
+        panelOben.add(txtpnSmartLogapplication);
+
+        JPanel panelRechts = new JPanel();
+        panelRechts.setBounds(507, 35, 193, 436);
+        frame.getContentPane().add(panelRechts);
+
+        JButton btnWareneingang = new JButton("Wareneingang");
+        btnWareneingang.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Hier öffnest du die Klasse Wareneingang
+                Wareneingang wareneingang = new Wareneingang();
+                wareneingang.setVisible(true);
+            }
+        });
+
+        txtSuche = new JTextField();
+        txtSuche.setText("Suche");
+        txtSuche.setColumns(10);
+
+        JButton btnWarenausgang = new JButton("Warenausgang");
+        btnWarenausgang.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Hier öffnest du die Klasse Warenausgang
+                Warenausgang warenausgang = new Warenausgang();
+                warenausgang.setVisible(true);
+            }
+        });
+
+        JButton btnInventur = new JButton("Inventur");
+     
+
+        JButton btnLagerverwaltung = new JButton("Lagerverwaltung");
+
+        JButton btnMitarbeiterverwaltung = new JButton("Mitarbeiterverwaltung");
+        btnMitarbeiterverwaltung.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        
+        JButton btnNewButton = new JButton("Logout");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        GroupLayout gl_panelRechts = new GroupLayout(panelRechts);
+        gl_panelRechts.setHorizontalGroup(
+        	gl_panelRechts.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panelRechts.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_panelRechts.createParallelGroup(Alignment.TRAILING, false)
+        				.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(btnWarenausgang, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(btnWareneingang, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(btnInventur, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(btnLagerverwaltung, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(btnMitarbeiterverwaltung, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(txtSuche, Alignment.LEADING))
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        gl_panelRechts.setVerticalGroup(
+        	gl_panelRechts.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panelRechts.createSequentialGroup()
+        			.addComponent(txtSuche, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addGap(12)
+        			.addComponent(btnWareneingang)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(btnWarenausgang)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(btnInventur)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(btnLagerverwaltung)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(btnMitarbeiterverwaltung)
+        			.addPreferredGap(ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+        			.addComponent(btnNewButton)
+        			.addContainerGap())
+        );
+        panelRechts.setLayout(gl_panelRechts);
+        
+        JPanel panelUnten = new JPanel();
+        panelUnten.setBounds(0, 471, 700, 1);
+        frame.getContentPane().add(panelUnten);
+        panelUnten.setLayout(null);
+        
+        JLabel lblNewLabel = new JLabel("New label");
+        lblNewLabel.setBounds(0, 0, 61, 16);
+        panelUnten.add(lblNewLabel);
+        
+        JLabel lblNewLabel_1 = new JLabel("Smart Log.");
+        lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+        lblNewLabel_1.setBounds(6, 431, 131, 35);
+        frame.getContentPane().add(lblNewLabel_1);
+    }
+
+	
 }

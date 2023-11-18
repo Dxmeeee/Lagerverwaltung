@@ -15,7 +15,7 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-public class Inventur {
+public class Inventur extends JFrame {
 
 	private JFrame frame;
 
